@@ -1,0 +1,20 @@
+
+{% extends 'app/login.html'%}
+{% block main %}
+       <form action="" method="post">
+            {% csrf_token %}
+            <!-- {{form.as_p}} -->
+            {{form.username.label}} {{form.username}} <br>
+            <!-- {{form.first_name.label}} {{form.first_name}} <br><br> -->
+            <!-- {{form.last_name.label}} {{form.last_name}} <br><br> -->
+            {{form.email.label}} <input type="text" name="email" value="{{email}}"> <br>
+            <label for ='otp'>Enter OTP</label><input type="text" name="otp" id="otp">
+            {{form.password1.label}} {{form.password1}} <br>
+            {{form.password2.label}} {{form.password2}} <br>
+            <input type="submit" value="Signup" formaction="{% url 'registerurl' %}">
+            <!-- <button><a href="{% url 'loginurl' %}">login</a></button> -->
+        </form>
+    {% for message in messages %}
+    <p>>{{ message }}</p
+{% endfor %}
+{% endblock %}

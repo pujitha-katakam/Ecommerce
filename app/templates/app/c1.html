@@ -1,0 +1,46 @@
+{% extends 'app/index.html' %}
+
+{% block main2 %}
+<style>
+    .p1 {
+        width: 100%;
+        height: 270px;
+    }
+    .photo img {
+        border-radius: 8%;
+    }
+    h1:hover {
+        background-color: rgb(230, 181, 217);
+        transition: background-color 0.5s ease-in-out;
+    }
+    .no-data {
+        color: red;
+        font-weight: bold;
+        margin: 20px;
+        font-size: 18px;
+    }
+</style>
+
+<body>
+    {% if data %}
+        {% for i in product_types %}
+            <h1 style="background-color: #F2E9E9;">{{ i }}</h1>
+            <div class="p1">
+                {% for row in data %}
+                    {% if row.product_type == i %}
+                        <div class="photo" style="float: left; margin-right: 40px; margin-top: 20px;">
+                            <a href="{% url 'detailurl' row.id %}">
+                                <img src="{{ row.image.url }}" alt="" width="190px" height="200px">
+                            </a>
+                            <p>{{ row.name }}<br>&#x20B9;{{ row.price }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <br>
+        {% endfor %}
+    {% else %}
+        <p> No Data Found</p>
+    {% endif %}
+</body>
+{% endblock %}

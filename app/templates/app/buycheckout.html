@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snazzy/checkout</title>
+</head>
+<body>
+    <form action="{% url 'buycheckout1' %}" id="myform">
+        <h3> select Address </h3>
+        {% if addresses %}
+            {% for address in addresses %}
+                <div>
+                    <input type="radio" name="address" value="{{address.id}}"><strong>Address {{forloop.counter}}</strong><br>
+                    {{address.name}} <br>{{address.locality}} <br>{{address.city}} <br>{{address.mobile}} <br>{{address.zipcode}},{{address.state}}
+                </div>
+            {% endfor %}
+        {% else %}
+                There is no Address please Add Address
+        {% endif %}
+         <button><a href="{% url 'address' %}"> Add Address</a></button>
+         <button type="submit"> continue</button>
+    </form>
+</body>
+</html>

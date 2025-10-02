@@ -1,0 +1,103 @@
+
+{% load humanize %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snazzy - Cart</title>
+    <style>
+        /* cart.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ccc;
+}
+
+.cart-container {
+    width:800px;
+    margin-left: 40px;
+    padding: 20px;
+    float:left;   
+}
+
+.cart-items {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: white;
+}
+
+.cart-item {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.cart-item img {
+    margin-right: 20px;
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.item-details h3 {
+    margin: 0;
+}
+
+.item-details p {
+    margin: 5px 0;
+}
+
+.item-details a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 10px;
+}
+
+.item-details a:hover {
+    text-decoration: underline;
+}
+.ship-container{
+    width:600px;
+    height:250px;
+    border: 1px solid #ccc;
+    float:right;
+    margin-top:100px;
+    background-color: white;
+}
+
+    </style>
+</head>
+<body>
+    <div class="cart-container">
+        <h1>Your Cart</h1>
+        <div class="cart-items">
+            {% for item in df %}
+            <div class="cart-item">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" height="70px" width="70px">
+                <div class="item-details">
+                    <h3>{{ item.product.name }}</h3>
+                    <!-- <p>Price: &#x20B9;{{ item.product.price }}</p> -->
+                    <p>{{item.total_cost|intcomma}}</p>
+                    <p id="quant">Quantity:<a href="{% url 'minus_cart' item.id  %}">&nbsp;-</a> {{ item.quantity }}&nbsp;<a href="{% url 'plus_cart' item.id %}">+</a></p>
+                    <a href="{% url 'remove_cart' item.id %}"><p style="background-color: red; height: 20px; width: 130px; color: black;">Remove Item</p></a>
+                    <!-- Add plus and minus buttons for quantity manipulation -->
+                    <hr>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="ship-container">
+        <h2 style="text-align: center;">CART TOTAL</h2>
+        <p style="margin-left: 20px;"><span>SUB-TOTAL:</span><span style="margin-left: 385px;">&#x20B9;{{amount|intcomma}}</span></p>
+        <p style="margin-left: 20px;">SHIPPING CHARGES:<span style="margin-left: 315px;">&#x20B9;{{shipping_amount}}</span></p>
+        <hr>
+        <p style="margin-left: 20px;">Total:<span style="margin-left: 435px;">&#x20B9;{{total_amount|intcomma}}</span></p>
+
+        <button><a href="{% url 'checkout' %}"> checkout</a></button>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+</head>
+<body>
+    <h1>Product List</h1>
+
+    <!-- Filter form -->
+    <form method="GET" action="">
+        <label for="min_price">Minimum Price:</label>
+        <input type="text" id="min_price" name="min_price" value="{{ request.GET.min_price }}">
+        <label for="max_price">Maximum Price:</label>
+        <input type="text" id="max_price" name="max_price" value="{{ request.GET.max_price }}">
+        <button type="submit">Apply Filter</button>
+    </form>
+
+    <!-- Sort by -->
+    <form method="GET" action="">
+        <label for="sort_by">Sort by:</label>
+        <select id="sort_by" name="sort_by">
+            <option value="low_to_high" {% if request.GET.sort_by == "low_to_high" %}selected{% endif %}>Price: Low to High</option>
+            <option value="high_to_low" {% if request.GET.sort_by == "high_to_low" %}selected{% endif %}>Price: High to Low</option>
+        </select>
+        <button type="submit">Apply Sort</button>
+    </form>
+
+    <!-- Display products -->
+    <ul>
+        {% for product in products %}
+            <li><img src="{{ product.image.url }}" alt="{{ product.name }}" style= "height: 250px; width: 250px;"></li>
+            <li>{{ product.name }}</li>
+            <li>{{ product.price }}</li>
+        {% empty %}
+            <li>No products found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

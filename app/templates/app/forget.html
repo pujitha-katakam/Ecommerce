@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Reset</title>
+</head>
+<body>
+    <h1>Password Reset</h1>
+    <p>An OTP has been sent to your email address: {{ email }}</p>
+    <p>Please check your inbox and enter the OTP in the password reset form.</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="email" value="{{email}}">
+        <h4>Enter otp</h4>
+        <input type="text" name="otp" required=True>
+        Enter Password<input type="password" name="new_password" id="new_password">
+        Re-Enter Password<input type="password" name="confirm_password" id="confirm_password" required onchange="validatePassword()">
+        <input type="submit" value="submit"  formaction="{% url 'reseturl'%}" onclick="return validatePassword()">
+        <p>{{error}}</p>
+    </form>
+    <script>
+        function validatePassword() {
+          var password = document.getElementById("new_password");
+          var confirmPassword = document.getElementById("confirm_password");
+          if (password.value !== confirmPassword.value) {
+            confirmPassword.setCustomValidity("Passwords Don't Match");
+            confirmPassword.reportValidity();
+            return false;
+          } else {
+            confirmPassword.setCustomValidity("");
+            return true;
+          }
+        }
+      </script>
+
+</body>
+</html>

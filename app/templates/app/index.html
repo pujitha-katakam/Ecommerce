@@ -1,0 +1,357 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snazzy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+     <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet"> 
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Internal CSS -->
+    <style>
+body {
+    font-family: 'Anek Devanagari', sans-serif;
+    /* font-family: Arial, sans-serif; */
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-color: #F2E9E9;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+footer{
+    margin-top: 30px;
+}
+
+.logo img {
+    height:60px;
+    width:60px;
+    border-radius: 50%;
+    border-width: 30px;
+    border-color: white;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color:#2F4F4F;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Search bar styling */
+.searching {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.searching input[type="text"] {
+    padding: 10px; /* Adjust padding as needed */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 20px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    outline: none; /* Remove default outline */
+    width: 500px;
+}
+
+.searching input[type="text"]::placeholder {
+    color: #999; /* Placeholder color */
+}
+
+.searching img {
+    margin-left: 10px; /* Space between input and icon */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/*main content*/
+
+#wd h3, #pt h3, #an h3, #ts h3 {
+            display: inline-block;
+            margin-right: 20px;
+            text-align: center;
+            background: linear-gradient(to right, transparent 50%,#F2E9E9 50% ); /* Background gradient */
+            padding: 10px 0; /* Adjust padding as needed */
+            background-size: 200% 100%; /* Background size */
+            transition: background-position 1s;
+        }
+        #wd h3:hover, #pt h3:hover ,#an h3:hover,#ts h3:hover{
+            background-position: -100% 0; /* Slide the background to cover the text on hover */
+        }
+        #wd img, #pt img, #an img, #ts img {
+            border-radius: 8%;
+            height: 350px;
+            width: 270px;
+        }
+        .st {
+            margin-left:10px;
+        }
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .st{
+            text-align: center;
+        }
+        #wd h3 img {
+            display: block;
+            margin: 0 auto;
+        }
+        .st #wd h1, .st #pt h1, .st #an h1, .st #ts h1{
+            /* background-color: #F2E9E9; */
+            padding:5px;
+            text-align: center;
+            /* background: linear-gradient(to right, #f4c4e9 50%, transparent 50%); */
+            background-size: 200% 100%; /* Background size */
+            /* transition: background-position 1s ease-in-out; */
+
+        }
+        .st #wd h1:hover, .st #pt h1:hover, .st #an h1:hover,.st #ts h1:hover {
+            background-position: -100% 0; /* Slide the background to cover the text on hover */
+            background-color: rgb(230, 181, 217);
+            transition: background-position 0.5s ease-in-out, background-color 0.5s ease-in-out;
+        }
+        .st #wd img, #pt img, #an img, #ts img {
+            margin: 10px;
+        }
+        .st #wd, #pt, #an, #ts{
+            padding:10px;
+        }
+        #Total{
+            margin-left: 40px;
+            margin-right: 40px;
+            padding-top: 140px;
+        }
+        .fixed-top {
+      position: fixed; /* Fix the navigation bar position */
+      top: 0; /* Position it at the top of the viewport */
+      width: 100%; /* Make it span the entire width */
+      z-index: 1000; /* Ensure it appears above other content */
+      
+    }
+    
+    /* Hide dropdown menu by default */
+#wj-dropdown .dropdown-menu {
+    display: none;
+}
+
+/* Show dropdown menu on hover */
+#wj-dropdown:hover .dropdown-menu {
+    display: block;
+}
+/* Ensure each dropdown item appears on its own line */
+#wj-dropdown .dropdown-menu li {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+#wj-dropdown .dropdown-menu {
+    width: 750px; /* Adjust the width as needed */
+}
+#wj-dropdown a {
+    text-decoration: none;
+}
+#wj-dropdown .dropdown-menu li:hover {
+    background-color: rgb(230, 181, 217);
+}
+       </style>
+    </head>
+    <body>
+        <header class="fixed-top">
+        <div class="logo"><img src="{% static 'images/snazzy logo.png' %}" alt="xyz"></div>
+        <nav>
+            <ul><li><a href="{% url 'homeurl' %}">Home</a></li></ul>
+        </nav>
+        <div class="searching">
+            <form method="get" action="{% url 'search' %}">
+        <input type="text" name="product" id="" placeholder="searchproduct">
+        <button style="border: none; background: none; padding: 0;"><img src="{% static 'images/search.png' %}" alt="" height="30px" width="30px"></button>
+    </form>
+    </div>
+        <nav >
+             <!-- <h1><img src="{% static 'images/snazzy logo.png' %}" alt="xyz"></h1> -->
+             <ul>
+                <!-- <li><a href="#wd">Wedding Jewellery</a></li> -->
+                <li class="dropdown"><a href="{% url 'sort' %}">filter</a></li>
+                <li class="dropdown" id="wj-dropdown">
+                    <a href="#"  role="button" aria-haspopup="true" aria-expanded="false">Wedding Jewellery <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <a href="{% url 'curl' subcategory='Hindu wedding jwellery' %}"><li>Hindu Wedding Jewellery</li></a><hr>
+                        <a href="{% url 'curl' subcategory='Muslim wedding jwellery' %}"><li>Muslim Wedding Jewellery</li></a><hr>
+                        <a href="{% url 'curl' subcategory='Christian wedding jwellery' %}"><li>Christian Wedding Jewellery</li></a>
+                    </ul>
+                </li>
+                
+                <!-- <li><a href="#pt">Party Jewellery</a></li> -->
+
+                <li class="dropdown" id="wj-dropdown">
+                    <a href="#"  role="button" aria-haspopup="true" aria-expanded="false">Party Jewellery <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <a href="{% url 'curl' subcategory='Birthday Jewellery' %}"><li>Birthday Jewellery</li></a><hr>
+                        <a href="{% url 'curl' subcategory='Anniversary Jewellery' %}"><li>Anniversary Jewellery</li></a>
+                    </ul>
+                </li>
+                
+                <!-- <li><a href="#an">Snazzy's Special</a></li> -->
+                
+                <li class="dropdown" id="wj-dropdown">
+                    <a href="#"  role="button" aria-haspopup="true" aria-expanded="false">Snazzy's Special <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <a href="{% url 'curl' subcategory='1 Gram Gold' %}"><li>1 Gram Gold</li></a><hr>
+                        <a href="{% url 'curl' subcategory='CZ' %}"><li>CZ</li></a>
+                    </ul>
+                </li>
+                
+                
+                <li><a href="{% url 'curl' subcategory='Accessory' %}">Accesories</a></li>
+
+                {% if request.user.is_authenticated %}
+                    <li><a class="dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/profile.png' %}" alt="xyz" height="30px" width="25px"></a>
+                    <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'orders' %}">Orders</a>
+                        <a class="dropdown-item" href="{% url 'changepass' %}">Change Password</a>
+                        <a class="dropdown-item" href="{% url 'logouturl' %}">Logout</a>
+
+                    </div>
+                    </li>
+                    
+
+                {% else %}
+                    <li><a class="dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'images/profile.png' %}" alt="xyz" height="30px" width="25px"></a>
+                    <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                        <a class="dropdown-item" href="{% url 'loginurl' %}">login</a>
+                        <a class="dropdown-item" href="{% url 'signupurl' %}">Create Account</a>
+                    </div>
+                    </li>
+
+                {% endif %}
+                <li><a href="{% url 'cart' %}"><img src="{% static 'images/cart-icon.png' %}" alt="xyz" height="30px" width="40px"></a></li>
+                
+            </ul>
+            </nav>
+        </header>
+        <div id="Total">
+        {% block main2 %}
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/banner3.jpg' %}" class="d-block w-100" alt="hindhu" height="400px" width="450px">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/banner2.jpg' %}" class="d-block w-100" alt="christian" height="400px" width="450px">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/banner4.jpg' %}" class="d-block w-100" alt="muslim" height="400px" width="450px">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    <br>
+        
+        <div class="st">
+            <div id="wd">
+                <h1>WEDDING JEWELLERY</h1>
+                <h3 style="font-size: medium; padding-right: 30px;"><a href="{% url 'curl' subcategory='Hindu wedding jwellery' %}"><img src="{% static 'images/nayanthara.jpg' %}" alt=""></a> <br>HINDU WEDDING</h3>
+                <h3 style="font-size: medium; padding-right: 30px;"><a href="{% url 'curl' subcategory='Muslim wedding jwellery' %}"><img src="{% static 'images/Thahaseen.jpeg.jpg' %}" alt=""></a><br>MUSLIM WEDDING</h3>
+                <h3 style="font-size: medium;"><a href="{% url 'curl' subcategory='Christian wedding jwellery' %}"><img src="{% static 'images/SAM.jpg' %}" alt=""></a><br>CHRISTIAN WEDDING</h3>
+            </div>
+            
+            <div id="pt">
+                <h1>PARTY JEWELLERY</h1>
+                <h3 style="font-size: medium; padding-right: 45px;"><a href="{% url 'curl' subcategory='Birthday Jewellery' %}"><img  src="{% static 'images/birrthday.jpg' %}" alt=""></a><br>BIRTHDAY</h3>
+                <h3 style="font-size: medium;"><a href="{% url 'curl' subcategory='Anniversary Jewellery' %}"><img  src="{% static 'images/Anniversary.jpg' %}" alt=""></a><br>ANNIVERSARY</h3>
+            </div>
+            
+            <div id="an">
+                <h1 >SNAZZY SPECIAL</h1>
+                <h3 style="font-size: medium; padding-right: 45px;"><a href="{% url 'curl' subcategory='1 Gram Gold' %}"><img src="{% static 'images/one gram jewel set.jpg' %}" alt=""></a><br>ONE GRAM GOLD</h3>
+                <h3 style="font-size: medium;"><a href="{% url 'curl' subcategory='CZ' %}"><img src="{% static 'images/CZ set.jpg' %}" alt=""></a><br>CZ</h3>
+            </div>
+            
+            <div id="ts">
+                <h1 >ACCESSORIES</h1>
+                <h3 style="font-size: medium;"><a href="{% url 'curl' subcategory='Accessory' %}"><img src="{% static 'images/accessories.jpeg.jpg' %}" alt=""></a><br>Accessories</h3>
+            </div>
+        </div>
+
+
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+     {% endblock %}
+    </body>
+</div>
+        <footer class="bg-dark text-white">
+            <div class="container py-4">
+              <div class="row py-5">
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <h6 class="text-uppercase mb-3">Customer services</h6>
+                  <ul class="list-unstyled mb-0">
+                    <li><a class="footer-link" href="#">Help &amp; Contact Us</a></li>
+                    <li><a class="footer-link" href="#">Returns &amp; Refunds</a></li>
+                    <li><a class="footer-link" href="#">Terms &amp; Conditions</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <h6 class="text-uppercase mb-3">Company</h6>
+                  <ul class="list-unstyled mb-0">
+                    <!-- <li><a class="footer-link" href="#">About Us</a></li> -->
+                    <li><a class="footer-link" href="{% url 'aboutusurl' %}">About Us</a></li>
+                    <li><a class="footer-link" href="{% url 'servicesurl' %}">Available Services</a></li>
+                    <li><a class="footer-link" href="{% url 'servicesurl' %}">FAQs</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-4">
+                  <h6 class="text-uppercase mb-3">Social media</h6>
+                  <ul class="list-unstyled mb-0">
+                    <li><a class="footer-link" href="#"><img src="{% static 'images/twitter.png' %}" alt="" style="height: 20px; width: 20px;"></a>&nbsp;&nbsp;
+                    <a class="footer-link" href="#"><img src="{% static 'images/instagram.png' %}" alt="" style="height: 20px; width: 20px;"></a>&nbsp;&nbsp;
+                    <a class="footer-link" href="#"><img src="{% static 'images/facebook.png' %}" alt="" style="height: 20px; width: 20px;"></a></li>
+
+                  </ul>
+                </div>
+              </div>
+              <div class="border-top pt-4" style="border-color: #1d1d1d !important">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <p class="small text-muted mb-0">&copy; 2020 All rights reserved.</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

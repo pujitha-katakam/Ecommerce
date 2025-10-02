@@ -1,0 +1,135 @@
+{% extends 'app/index.html' %}
+ {% load static %}
+ <head>
+    {% block main2 %}
+    <style>
+        /* Define a container for the product details */
+        #uproduct {
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space items evenly */
+            align-items: center; /* Align items vertically */
+            max-width: 1000px; /* Limit the maximum width */
+            margin: 0 auto; /* Center the container */
+        }
+
+        /* Style for the left side (image) */
+        #uproduct #left {
+            flex: 0 0 auto; /* Don't allow flex items to grow or shrink */
+        }
+
+        /* Style for the right side (details) */
+        #uproduct #right {
+            flex: 1 1 auto; /* Allow the right side to grow or shrink as needed */
+            margin-left: 20px; /* Add some space between image and details */
+        }
+
+        /* Style for the image */
+        #uproduct #left img {
+            width: 100%; /* Make the image fill its container */
+            max-width: 500px; /* Limit the maximum width of the image */
+            height: auto; /* Maintain aspect ratio */
+        }
+        #g, #g1{
+            height:40px;
+            width:150px;
+            background-color: grey;
+        }
+        #buy{
+            height:40px;
+            width:150px;
+            background-color: black;
+            text-align: center;
+            padding-top: 8px;    
+        }
+        #buy a{
+            color: aliceblue;
+            text-decoration: none;
+        }
+    
+    </style>
+</head>
+<body>
+    {% if msg %}
+        <div class="msg"  id="msgContainer" style="background-color:#2F4F4F;color: white; text-align: center; padding-left: 100px;"> <h4>{{msg}}</h4></div>
+        <script>
+            setTimeout(function() {
+                var msgElement = document.getElementById("msgContainer");
+                if (msgElement) {
+                    msgElement.style.display = "none";
+                }
+            }, 2000); // 2000 milliseconds = 2 seconds
+        </script>
+    {% endif %}
+    
+<div id="uproduct">
+    <div id="left">
+        <img src="{{ uprods.image.url }}"  alt="{{ uprods.name }}">
+    </div>
+    <div id="right">
+        <h2>{{ uprods.name }}</h2>
+        <p>Description: {{ uprods.description }}</p>
+        <br>
+        <br>
+        <h3>&#x20B9;{{ uprods.price }}</h3>
+
+
+        <form action="{% url 'add_to_cart' %}">
+        <input type="hidden" name="prod_id" value="{{uprods.id}}" id="prod_id">
+        <p id="m"><button type="submit" id="g" onclick="action()">Add to Cart</button></p>
+        <!-- <p style="display: none;" id="m1"><button type="submit" id="g1" >Go to Cart</button></p>  -->
+        </form>
+    
+            <div id="buy"><a href="{% url 'add_to_buy' itemid=uprods.id %}" ,name="prod_id" ,value="{{uprods.id}}",id="prod_id">Buy Now</a>
+            </div>
+    </div>
+</div>
+<script>
+    function action(){
+        // document.getElementById('g').style.visibility='hidden';
+        // document.getElementById('g1').style.visibility='visible';
+        document.getElementById('m').style.display='none';
+        document.getElementById('m1').style.display='block';
+        alert('Item Added to cart Succesful')
+    }
+    
+</script>
+{% endblock %}
+</body>
+
+<!-- {% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #left{
+                float:left;
+                margin-left: 120px;
+            }
+            #right{
+                float:right;
+                position: absolute;
+                top: 200px;
+                left:350px;
+            }
+        </style>
+
+    </head>
+    <body>
+    <div id="uproduct">
+      <div id="left"><img src="{{uprod.image.url}}" alt="" width="500px" height="600px"></div>
+      <div id="right">
+         <h3>Name:{{uprod.name}}</h3>
+         <h3>Description:{{uprod.description}}</h3>
+         <h3>Price:{{uprod.price}}</h3>
+      </div>
+    </div>
+    </body>
+
+<div class="buttons row flex" style="font-family: Rajdhani; position: relative;">
+        
+          <button type="submit" class="d-grid gap-2 btni btn btn-danger p-1 m-1 btn-lg text-decoration-none text-white" id="g" onclick="action()">Add to Cart</button>
+          <button type="submit" class="d-grid gap-2 btni btn btn-danger p-1 m-1 btn-lg text-decoration-none text-white" id="g1" style="visibility: hidden;">go to Cart</button>
+            <div class="btn btn-dark p-1 m-1 btn-lg"><a href="*"
+                class="text-decoration-none text-white">Buy Now</a>
+
+</html> -->

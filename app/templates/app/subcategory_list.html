@@ -1,0 +1,18 @@
+<!-- subcategory_list.html -->
+{% extends 'app/index.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subcategory List</title>
+</head>
+<body>
+    <h1>All Subcategories</h1>
+    <ul>
+        {% for subcategory in subcategories %}
+            <li>{{ subcategory.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

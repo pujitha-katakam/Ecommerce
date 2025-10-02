@@ -1,0 +1,16 @@
+{% extends 'app/login.html'%}
+{% block main %}
+<form  action="" method="post">
+
+    {% csrf_token %}
+
+    <label for="otp">Enter Email:</label>
+    <input type="text"  id="email" name="email">
+    <input type="submit" value="sendotp" formaction="{% url 'signupurl' %}">
+
+</form>
+{% for msg in messages %}
+    <p> {{ msg }}</p>
+{% endfor %}
+<h3>{{errors}}</h3>
+{% endblock %}

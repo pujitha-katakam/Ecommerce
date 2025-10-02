@@ -1,0 +1,35 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Now</title>
+</head>
+<body>
+    <div class="cart-container">
+        <h1>Your Order</h1>
+            <div class="cart-item">
+                <img src="{{ a.product.image.url }}" alt="{{ a.product.name }}" height="70px" width="70px">
+                <div class="item-details">
+                    <h3>{{ a.product.name }}</h3>
+                    <!-- <p>Price: &#x20B9;{{ item.product.price }}</p> -->
+                    <p>{{a.total_cost}}</p>
+                    <p id="quant">Quantity:<a href="{% url 'minus_buy' a.id  %}">&nbsp;-</a> {{ a.quantity }}&nbsp;<a href="{% url 'plus_buy' a.id %}">+</a></p>
+                    <a href="{% url 'remove_buy' a.id %}"><p style="background-color: red; height: 20px; width: 130px; color: black;">Remove Item</p></a>
+                    <!-- Add plus and minus buttons for quantity manipulation -->
+                    <hr>
+                </div>
+            </div>
+            <div class="ship-container">
+                <h2 style="text-align: center;">TOTAL</h2>
+                <p style="margin-left: 20px;"><span>SUB-TOTAL:</span><span style="margin-left: 385px;">&#x20B9;{{amount|intcomma}}</span></p>
+                <p style="margin-left: 20px;">SHIPPING CHARGES:<span style="margin-left: 315px;">&#x20B9;{{shipping_amount}}</span></p>
+                <hr>
+                <p style="margin-left: 20px;">Total:<span style="margin-left: 435px;">&#x20B9;{{total_amount|intcomma}}</span></p>
+        
+                <button><a href="{% url 'buycheckout' %}"> checkout</a></button>
+            </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="5;url={% url 'homeurl' %}">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row">
+            <h3>Welcome {{request.user.username|capfirst}}</h3>
+            <div class="col-sm-2 border-end">
+                <ul class="list-unstyled">
+                    <li class="d-grid" class="btn btn-primary">Change Password Done</li>
+                </ul>
+            </div>
+            <div class="col-sm-9 offset-sm-1 text-center">
+                <h3>Password Changed Successfully !!!</h3>
+                <div>
+                    <iframe src="https://giphy.com/embed/ibolLe3m0qHE3PQTtk" width="200" height="200" frameBorder="®" class="giphy-embed" allowFullScreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
