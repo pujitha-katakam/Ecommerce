@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: snazzy-ecommerce
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn ec.wsgi:application
+    postDeployCommand: python manage.py migrate
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: ec.settings
+      - key: PYTHON_VERSION
+        value: 3.11.7
+    disk:
+      name: media
+      mountPath: /opt/render/project/src/media
+      sizeGB: 1
+
